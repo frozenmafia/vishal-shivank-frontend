@@ -1,0 +1,8 @@
+
+  .mat-list .mat-list-item{
+    height:  30px; /* default is 72px */
+  }
+  .dropdown-menu {
+    padding: 5;
+    padding-inline-start:0px;
+  }

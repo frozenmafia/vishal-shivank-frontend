@@ -1,0 +1,26 @@
+<body class="text-center">
+    <form [formGroup]="userForm" #f="ngForm">
+      <img src="assets\image\icon.jpg" alt="Logo">
+      <p>
+          <mat-form-field>
+              <input matInput placeholder="Name" formControlName="_name">
+          </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <input matInput placeholder="Phone_number" formControlName="_name">
+        </mat-form-field>
+    </p>
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="_password">
+        </mat-form-field>
+      </p>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button mat-button color="primary" (click)="login()">SIGN IN</button>
+    </form>
+</body>

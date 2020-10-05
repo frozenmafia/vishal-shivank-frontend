@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li>
+        <div class="row">
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Account</a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Admin</button>
+                <button ngbDropdownItem>Login</button>
+                <button ngbDropdownItem>Log Out</button>
+                <button ngbDropdownItem>New here? Sign up</button>
+                <button ngbDropdownItem>Forgot Password!</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
