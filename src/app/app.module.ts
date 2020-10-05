@@ -13,6 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input/lib/ngx-mat-intl-tel-input.module';
+import { Ng2TelInputModule } from 'ng2-tel-input';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,14 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     NgbModule,
     ReactiveFormsModule,
-    NgxIntlTelInputModule
+    Ng2TelInputModule,
+    MatPasswordStrengthModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

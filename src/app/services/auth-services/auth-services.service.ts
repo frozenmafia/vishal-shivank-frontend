@@ -1,13 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServicesService {
-
-  constructor() { }
+  private userUrl = "http://localhost:5000/";
+  constructor(
+    private http:HttpClient
+  ) { }
   isLoggedIn(){
     return false
+  }
+
+
+  create_OTP(user_data){
+    return this.http.post(
+      this.userUrl.concat('generate-otp'),
+      JSON.stringify(user_data)
+    );
   }
 
   get currentUser(){

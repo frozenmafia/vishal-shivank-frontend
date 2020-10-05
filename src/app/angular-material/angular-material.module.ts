@@ -10,16 +10,21 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepickerModule, MatDateRangePicker} from '@angular/material/datepicker';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 const MaterialComponenets = [ 
   MatButtonModule,
+  MatPasswordStrengthModule,
   MatListModule,
   MatIconModule,
   MatFormFieldModule,
   MatRadioModule,
   MatInputModule,
+  MatDatepickerModule,
   MatToolbarModule,
+  MatNativeDateModule,
   MatInputModule,
   MatSelectModule,
   MatTableModule,

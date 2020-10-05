@@ -15,9 +15,9 @@
               <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Account</a>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <button ngbDropdownItem>Admin</button>
-                <button ngbDropdownItem>Login</button>
+                <button ngbDropdownItem [routerLink]="['/login']">Login</button>
                 <button ngbDropdownItem>Log Out</button>
-                <button ngbDropdownItem>New here? Sign up</button>
+                <button ngbDropdownItem [routerLink]="['/sign-up']">New here? Sign up</button>
                 <button ngbDropdownItem>Forgot Password!</button>
 
               </div>
