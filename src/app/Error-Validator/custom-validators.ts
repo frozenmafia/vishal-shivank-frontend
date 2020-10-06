@@ -42,5 +42,6 @@ export const errorMessages: { [key: string]: string } = {
     gender:'Gender name is required',
     dob:'Date of Birth is required',
     password: 'Password must be between 7 and 15 characters, and contain at least one number and special character',
-    confirmPassword: 'Passwords must match'
+    confirmPassword: 'Passwords must match',
+    otp: 'Enter the One Time Password send to your mobile number'
 };

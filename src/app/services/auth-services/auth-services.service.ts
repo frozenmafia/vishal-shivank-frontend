@@ -13,6 +13,13 @@ export class AuthServicesService {
     return false
   }
 
+  verify_otp(otp){
+    return this.http.post(
+      this.userUrl.concat('verify-otp'),
+      JSON.stringify(otp)
+    );
+  }
+
 
   create_OTP(user_data){
     return this.http.post(

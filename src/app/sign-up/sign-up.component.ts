@@ -15,8 +15,9 @@ import { AuthServicesService } from '../services/auth-services/auth-services.ser
 export class SignUpComponent implements OnInit {
   dialCode: 91;
   hide = true;
-  phoneInput :number;
   hideC=true;
+  userForm:FormGroup;
+  isDisabled: boolean;
   confirmValidParentMatcher = new ConfirmValidParentMatcher();
   errors = errorMessages;
   genders=[
@@ -24,8 +25,7 @@ export class SignUpComponent implements OnInit {
     {value:'female',viewValue:'Female'},
     {value:'others',viewValue:'Others'}
   ]
-  userForm:FormGroup;
-  isDisabled: boolean;
+
   constructor(
     private fb:FormBuilder,
     private auth:AuthServicesService
@@ -80,15 +80,15 @@ export class SignUpComponent implements OnInit {
   }
   signUp(){
     console.log('sign up');
-    this.phoneInput = this.userForm.value.phone
-    console.log(this.phoneInput);
+    // this.phoneInput = this.userForm.value.phone
     this.userForm.patchValue({
-      country_code:Number(this.get_country_code())
+      country_code:Number(this.get_country_code()),
+      phone:Number(this.userForm.value.phone)
     })
-    console.log(this.userForm.value.phone)
+    // console.log(this.userForm.value.phone)
     console.log(this.userForm.value)
-    // this.generate_otp(this.userForm.value)
-    this.userForm.value.phone = this.phoneInput
+    this.generate_otp(this.userForm.value)
+
 
 
   }

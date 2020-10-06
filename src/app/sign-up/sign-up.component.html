@@ -110,7 +110,7 @@
                   </div>
                   <span>
                     <button style="float:inline-end" color="primary" [routerLink]="['/login']" mat-button>LOGIN</button>
-                    <button mat-button color="primary" (click)="signUp()" style="float: inline-start;" [disabled]="userForm.invalid">SIGN UP</button>
+                    <button mat-button color="primary" (click)="signUp()" style="float: inline-start;" [disabled]="userForm.invalid" [routerLink]="['/otp-verification']">SIGN UP</button>
                 </span>
                 </form>
             </body>

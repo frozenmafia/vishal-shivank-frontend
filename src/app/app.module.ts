@@ -17,6 +17,7 @@ import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input/lib/ngx-mat-int
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { HttpClientModule } from '@angular/common/http';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SignUpComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    OtpVerificationComponent
   ],
   imports: [
     BrowserModule,

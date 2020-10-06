@@ -34,8 +34,9 @@
       </p>
       <div class="input" style="padding-top:40px;">
         <span>
-          <button style="float:inline-end" color="primary" (click)="login()" mat-button [disabled]="userForm.invalid">LOGIN</button>
-          <button mat-button color="primary"  style="float: inline-start;" [routerLink]="['/sign-up']">SIGN UP</button>
+          <button mat-button color="primary"  style="float: inline-end;" [routerLink]="['/sign-up']">SIGN UP</button>
+          <button style="float:inline-start" color="primary" (click)="login()" mat-button [disabled]="userForm.invalid">LOGIN</button>
+          
       </span>
       </div>
 
