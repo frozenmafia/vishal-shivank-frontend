@@ -15,6 +15,7 @@ import { AuthServicesService } from '../services/auth-services/auth-services.ser
 export class SignUpComponent implements OnInit {
   dialCode: 91;
   hide = true;
+  phoneInput :number;
   hideC=true;
   confirmValidParentMatcher = new ConfirmValidParentMatcher();
   errors = errorMessages;
@@ -40,6 +41,7 @@ export class SignUpComponent implements OnInit {
       phone:['',[
         Validators.required
       ]],
+      country_code:[''],
       email:['',[
         Validators.required,
         Validators.email
@@ -78,34 +80,36 @@ export class SignUpComponent implements OnInit {
   }
   signUp(){
     console.log('sign up');
-    this.userForm.value.phone = this.get_phone_number()
-    this.generate_otp(this.userForm.value)
+    this.phoneInput = this.userForm.value.phone
+    console.log(this.phoneInput);
+    this.userForm.patchValue({
+      country_code:Number(this.get_country_code())
+    })
+    console.log(this.userForm.value.phone)
+    console.log(this.userForm.value)
+    // this.generate_otp(this.userForm.value)
+    this.userForm.value.phone = this.phoneInput
+
+
   }
   onCountryChange(obj){
-    this.dialCode = obj.dialCode
+    this.dialCode = obj.dialCode;
 
   }
   generate_otp(user_data){
     this.auth.create_OTP(user_data).subscribe();
   }
 
-  get_phone_number(){
-    let phone_s: string;
+  get_country_code(){
 
-    if(this.dialCode){
-      return {
-        countryCode:this.dialCode,
-        phone:this.userForm.value.phone
-      }
-
+    if(this.dialCode != undefined){
+      console.log('code changed')
+      return this.dialCode
     }
     else{
-      this.dialCode = 91;
-      console.log(this.dialCode);
-      return {
-        countryCode:this.dialCode,
-        phone:this.userForm.value.phone
-      }
+      
+      console.log('Not changed')
+      return 91
     }
 
 

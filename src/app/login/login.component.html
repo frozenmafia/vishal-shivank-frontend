@@ -1,26 +1,45 @@
-<body class="text-center">
-    <form [formGroup]="userForm" #f="ngForm">
-      <img src="assets\image\icon.jpg" alt="Logo">
-      <p>
+<mat-card>
+  <mat-card-content>
+    <body class="text-center">
+      <form [formGroup]="userForm" #f="ngForm">
+        <img src="assets\image\icon.jpg" alt="Logo">
+        <p>
           <mat-form-field>
-              <input matInput placeholder="Name" formControlName="_name">
+              <input 
+              ng2TelInput
+              [ng2TelInputOptions]="{initialCountry: 'in'}" 
+              (countryChange)="onCountryChange($event)" 
+              matInput 
+              formControlName="phone">
+              <mat-error >
+                {{errors.phone}}
+              </mat-error>
           </mat-form-field>
+  
       </p>
       <p>
         <mat-form-field>
-            <input matInput placeholder="Phone_number" formControlName="_name">
-        </mat-form-field>
-    </p>
-      <p>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="_password">
+          <mat-label>Enter your password</mat-label>
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+          <mat-error>
+            {{errors.password}}
+          </mat-error>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         </mat-form-field>
       </p>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+      <p>
+
+      </p>
+      <div class="input" style="padding-top:40px;">
+        <span>
+          <button style="float:inline-end" color="primary" (click)="login()" mat-button [disabled]="userForm.invalid">LOGIN</button>
+          <button mat-button color="primary"  style="float: inline-start;" [routerLink]="['/sign-up']">SIGN UP</button>
+      </span>
       </div>
-      <button mat-button color="primary" (click)="login()">SIGN IN</button>
-    </form>
-</body>
+
+      </form>
+  </body>
+  </mat-card-content>
+</mat-card>
