@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +17,8 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { AdminComponent } from './admin/admin/admin.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
     NgbModule,
     ReactiveFormsModule,
     Ng2TelInputModule,
-    MatPasswordStrengthModule.forRoot()
+    MatPasswordStrengthModule.forRoot(),
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

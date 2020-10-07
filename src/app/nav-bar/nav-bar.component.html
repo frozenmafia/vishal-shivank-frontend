@@ -14,7 +14,7 @@
             <div ngbDropdown class="d-inline-block">
               <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Account</a>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>Admin</button>
+                <button ngbDropdownItem [routerLink]="['/admin']">Admin</button>
                 <button ngbDropdownItem [routerLink]="['/login']">Login</button>
                 <button ngbDropdownItem>Log Out</button>
                 <button ngbDropdownItem [routerLink]="['/sign-up']">New here? Sign up</button>
