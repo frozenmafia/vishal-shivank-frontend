@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { AskQuestionComponent } from './ask-question/ask-question.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminModule } from './admin/admin.module';
     SignUpComponent,
     NavBarComponent,
     HomeComponent,
-    OtpVerificationComponent
+    OtpVerificationComponent,
+    AskQuestionComponent
   ],
   imports: [
     BrowserModule,

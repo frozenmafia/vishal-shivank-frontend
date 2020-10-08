@@ -25,4 +25,4 @@ export class AppEffects{
                 catchError(err=>of(new appActions.LoadHomeFail(err))
             ))
     ));
-                }
+}
