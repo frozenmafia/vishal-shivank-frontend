@@ -34,11 +34,12 @@
                       (removed)="remove(tag)">
                       {{tag}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+
                     </mat-chip>
                     <input
                       placeholder="Add upto 3 tags to describe what your question is about"
                       #tagInput
-                      [formControl]="tagsControl"
+                      formControlName="tagsControl"
                       [matAutocomplete]="auto"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

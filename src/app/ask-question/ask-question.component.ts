@@ -18,7 +18,7 @@ export class AskQuestionComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  tagsControl = new FormControl();
+  // tagsControl = new FormControl();
   filteredTags: Observable<string[]>;
   tags: string[] = [];
   allFruits: string[] = [];
@@ -30,14 +30,16 @@ export class AskQuestionComponent implements OnInit {
     private fb:FormBuilder,
     private _ngZone:NgZone
   ) { 
-    this.filteredTags = this.tagsControl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+    
   }
   ngOnInit(): void {
     this.questionForm = this.fb.group({
-      title:['']
+      title:[''],
+      tagsControl:['']
     })
+    this.filteredTags = this.questionForm.controls.tagsControl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
   
   add(event: MatChipInputEvent): void {
@@ -54,7 +56,7 @@ export class AskQuestionComponent implements OnInit {
       input.value = '';
     }
 
-    this.tagsControl.setValue(null);
+    this.questionForm.controls.tagsControl.setValue(null);
   }
 
   remove(fruit: string): void {
@@ -68,7 +70,7 @@ export class AskQuestionComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.tags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
-    this.tagsControl.setValue(null);
+    this.questionForm.controls.tagsControl.setValue(null);
   }
 
   private _filter(value: string): string[] {
