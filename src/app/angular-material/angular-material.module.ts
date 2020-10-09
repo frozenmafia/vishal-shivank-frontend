@@ -14,6 +14,7 @@ import {MatDatepickerModule, MatDateRangePicker} from '@angular/material/datepic
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import {MatChipsModule} from '@angular/material/chips';
 const MaterialComponenets = [ 
   MatButtonModule,
   MatPasswordStrengthModule,
@@ -21,6 +22,7 @@ const MaterialComponenets = [
   MatIconModule,
   MatFormFieldModule,
   MatRadioModule,
+  MatChipsModule,
   MatInputModule,
   MatDatepickerModule,
   MatToolbarModule,

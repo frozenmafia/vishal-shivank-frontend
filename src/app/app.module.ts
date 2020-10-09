@@ -20,6 +20,7 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { AdminComponent } from './admin/admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AskQuestionComponent } from './ask-question/ask-question.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    MatAutocompleteModule,
     NgbModule,
     ReactiveFormsModule,
     Ng2TelInputModule,
