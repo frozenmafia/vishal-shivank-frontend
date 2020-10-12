@@ -1,0 +1,76 @@
+[33mcommit 2f87b2d74261d28437f2eb972887fa8650d8165a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: frozenmafia <shivajay295@gmail.com>
+Date:   Fri Oct 9 15:07:39 2020 +0530
+
+    'seventh'
+
+[1mdiff --git a/src/app/ask-question/ask-question.component.html b/src/app/ask-question/ask-question.component.html[m
+[1mindex 80045ae..3278363 100644[m
+[1m--- a/src/app/ask-question/ask-question.component.html[m
+[1m+++ b/src/app/ask-question/ask-question.component.html[m
+[36m@@ -34,11 +34,12 @@[m
+                       (removed)="remove(tag)">[m
+                       {{tag}}[m
+                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>[m
+[32m+[m
+                     </mat-chip>[m
+                     <input[m
+                       placeholder="Add upto 3 tags to describe what your question is about"[m
+                       #tagInput[m
+[31m-                      [formControl]="tagsControl"[m
+[32m+[m[32m                      formControlName="tagsControl"[m
+                       [matAutocomplete]="auto"[m
+                       [matChipInputFor]="chipList"[m
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"[m
+[1mdiff --git a/src/app/ask-question/ask-question.component.ts b/src/app/ask-question/ask-question.component.ts[m
+[1mindex f92e46f..2b28888 100644[m
+[1m--- a/src/app/ask-question/ask-question.component.ts[m
+[1m+++ b/src/app/ask-question/ask-question.component.ts[m
+[36m@@ -18,7 +18,7 @@[m [mexport class AskQuestionComponent implements OnInit {[m
+   selectable = true;[m
+   removable = true;[m
+   separatorKeysCodes: number[] = [ENTER, COMMA];[m
+[31m-  tagsControl = new FormControl();[m
+[32m+[m[32m  // tagsControl = new FormControl();[m
+   filteredTags: Observable<string[]>;[m
+   tags: string[] = [];[m
+   allFruits: string[] = [];[m
+[36m@@ -30,14 +30,16 @@[m [mexport class AskQuestionComponent implements OnInit {[m
+     private fb:FormBuilder,[m
+     private _ngZone:NgZone[m
+   ) { [m
+[31m-    this.filteredTags = this.tagsControl.valueChanges.pipe([m
+[31m-      startWith(null),[m
+[31m-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));[m
+[32m+[m[41m    [m
+   }[m
+   ngOnInit(): void {[m
+     this.questionForm = this.fb.group({[m
+[31m-      title:[''][m
+[32m+[m[32m      title:[''],[m
+[32m+[m[32m      tagsControl:[''][m
+     })[m
+[32m+[m[32m    this.filteredTags = this.questionForm.controls.tagsControl.valueChanges.pipe([m
+[32m+[m[32m      startWith(null),[m
+[32m+[m[32m      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));[m
+   }[m
+   [m
+   add(event: MatChipInputEvent): void {[m
+[36m@@ -54,7 +56,7 @@[m [mexport class AskQuestionComponent implements OnInit {[m
+       input.value = '';[m
+     }[m
+ [m
+[31m-    this.tagsControl.setValue(null);[m
+[32m+[m[32m    this.questionForm.controls.tagsControl.setValue(null);[m
+   }[m
+ [m
+   remove(fruit: string): void {[m
+[36m@@ -68,7 +70,7 @@[m [mexport class AskQuestionComponent implements OnInit {[m
+   selected(event: MatAutocompleteSelectedEvent): void {[m
+     this.tags.push(event.option.viewValue);[m
+     this.tagInput.nativeElement.value = '';[m
+[31m-    this.tagsControl.setValue(null);[m
+[32m+[m[32m    this.questionForm.controls.tagsControl.setValue(null);[m
+   }[m
+ [m
+   private _filter(value: string): string[] {[m

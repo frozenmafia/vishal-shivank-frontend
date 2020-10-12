@@ -13,6 +13,24 @@ export class CustomValidators {
         const isValid = otherControlNames.every(controlName => formGroup.get(controlName).value === formGroup.get(firstControlName).value);
         return isValid ? null : { childrenNotEqual: true };
     }
+
+    static validateArrayNotEmpty(c: FormControl) {
+        if (c.value && c.value.length === 0) {
+          return {
+            validateArrayNotEmpty: { valid: false }
+          };
+        }
+        return null;
+      }
+    
+      static validateRequired(c: FormControl) {
+        // console.log('In Validate',c);
+        if (c.value.length === 0) {
+          return {required: true};
+        } else {
+          return null;
+        }
+      }
 }
 
 /**
