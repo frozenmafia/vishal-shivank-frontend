@@ -53,7 +53,7 @@ export const regExps: { [key: string]: RegExp } = {
  * Collection of reusable error messages
  */
 export const errorMessages: { [key: string]: string } = {
-    fullName: 'Full name must be between 1 and 128 characters',
+    fullName: 'Full name must be between 3 and 128 characters',
     email: 'Email must be a valid email address (username@domain)',
     phone:'Phone number is required',
     college_name:'College name is mandatory',

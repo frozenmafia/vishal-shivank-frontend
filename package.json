@@ -33,6 +33,7 @@
     "intl-tel-input": "^17.0.5",
     "libphonenumber-js": "^1.8.3",
     "material-design-icons": "^3.0.1",
+    "ng-katex": "^2.0.3",
     "ng2-tel-input": "^2.3.0",
     "ngx-bootstrap": "^6.1.0",
     "ngx-intl-tel-input": "^3.0.3",
