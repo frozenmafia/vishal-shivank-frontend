@@ -1,7 +1,7 @@
 <div style="margin: 10px;">
   <div class="leftpane" >
     <div class="container">
-      <div class="card border-primary mb-3">
+      <div class="card border-primary mb-3" style="height:100%">
         <h2 class="card-header">Ask your Question</h2>
          <div class="card-body text-primary">
               <form [formGroup]="questionForm">
@@ -14,7 +14,7 @@
                 </mat-form-field>
 
 
-                <mat-form-field style="width: 100%;" appearance="outline">
+                <!-- <mat-form-field style="width: 100%;" appearance="outline">
                   <mat-label>Body</mat-label>
                   <textarea matInput
                   cdkTextareaAutosize
@@ -24,7 +24,10 @@
                   cdkAutosizeMinRows="15"
                   cdkAutosizeMaxRows="50"></textarea>
                   <mat-error>You should properly explain your doubt</mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
+
+                
+
 
                 
                 <mat-form-field class="example-chip-list" appearance="outline">
@@ -37,7 +40,7 @@
                       {{tag}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
-                    <input placeholder="Names"
+                    <input placeholder="Tags"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                       [matChipInputAddOnBlur]="addOnBlur"
@@ -52,16 +55,16 @@
       </div>
     </div>
   <div class="rightpane">
-    <h1>Right View</h1>
-      <div class="card border-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-primary">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+      <div class="card border-primary mb-3">
+        <h2 class="card-header remove-whitespace">Your Explanation</h2>
+        <div class="card-body text-primary p-0 my-auto">
+          <ckeditor 
+          style="width: 100%;"
+          [config]="editorConfig"
+          [editor]="Editor"
+          ></ckeditor>
       </div>
   </div> 
-</div>
 
 
 

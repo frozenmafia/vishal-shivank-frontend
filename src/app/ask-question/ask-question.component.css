@@ -2,12 +2,22 @@
     width: 200%;   height: 100%;   margin: 0; } */
     
     .leftpane {
-        width: 75%;
+        width: 45%;
         height: 100%;
         float: left;
         /* background-color: rosybrown; */
         border-collapse: collapse;
+        text-align: center; 
         }
+    .rightpane {   
+        width: 55%;   
+        height: 100%;   
+        /* position: relative;   */
+        float: right;   
+        /* background-color: yellow;    */
+        border-collapse:collapse;    
+        text-align: center; 
+    }
 
 
 /*     
@@ -19,15 +29,7 @@
         border-collapse: collapse;
          text-align: center; } */
     
-    .rightpane {   
-        width: 25%;   
-        height: 100%;   
-        position: relative;  
-        float: right;   
-        /* background-color: yellow;    */
-        border-collapse:collapse;    
-        text-align: center; 
-    }
+
     
     .toppane {   
         width: 100%;  
@@ -50,3 +52,23 @@
   .example-chip-list {
     width: 100%;
   }
+
+  h2.remove-whitespace {
+    margin: 0;
+  }
+
+  :host ::ng-deep .ck-editor__editable_inline {
+    min-height: 208px;
+}
+
+.custom-block-indent-a {
+    margin-left: 10%;
+}
+
+.custom-block-indent-b {
+    margin-left: 20%;
+}
+
+.custom-block-indent-c {
+    margin-left: 30%;
+}
