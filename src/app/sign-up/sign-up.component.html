@@ -1,14 +1,17 @@
 <div>
-    <mat-card> 
-        <mat-card-content>
-            <body class="text-center">
-                <form [formGroup]="userForm" #f="ngForm">
-                  <img src="assets\image\icon.jpg" alt="Logo">
-                  <div class="container">
+    <mat-card class="card border"> 
+        <mat-card-content >
+            <body class="text-center" >
+                <form [formGroup]="userForm" #f="ngForm"> 
+                  <div class="card-header">
+                    <img src="assets\image\icon.jpg" alt="Logo">
+                  </div>
+                  
+                  <div class="container card-body">
                     <div class="row">
                       <div class="col-sm-6" >
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <input matInput placeholder="Name" formControlName="name">
                                 <mat-error >
                                   {{errors.fullName}}
@@ -16,7 +19,7 @@
                             </mat-form-field>
                         </p>
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <input 
                                 ng2TelInput
                                 [ng2TelInputOptions]="{initialCountry: 'in'}" 
@@ -30,7 +33,7 @@
                     
                         </p>
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <input matInput placeholder="Email" formControlName="email">
                                 <mat-error>
                                   {{errors.email}}
@@ -40,7 +43,7 @@
                       </div>
                       <div class="col-sm-6" >
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <input matInput placeholder="College Name" formControlName="college_name">
                                 <mat-error >
                                   {{errors.college_name}}
@@ -48,7 +51,7 @@
                             </mat-form-field>
                         </p>
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <mat-label>Gender</mat-label>
                                 <mat-select  formControlName="gender">
                                     <mat-option *ngFor="let gender of genders" [value]="gender.value">
@@ -61,7 +64,7 @@
                             </mat-form-field>
                         </p>
                         <p>
-                            <mat-form-field>
+                            <mat-form-field class = "container" appearance="outline">
                                 <mat-label>D.O.B</mat-label>
                                 <input matInput [matDatepicker]="picker" formControlName="dob">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -79,7 +82,7 @@
                       <div class="col-sm-6" >
                         <div class="example-container">
                             <p>
-                              <mat-form-field>
+                              <mat-form-field class = "container" appearance="outline">
                                 <mat-label>Enter your password</mat-label>
                                 <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
                                 <mat-error>
@@ -94,7 +97,7 @@
                       </div>
                       <div class="col-sm-6">
                         <p>
-                          <mat-form-field>
+                          <mat-form-field class = "container" appearance="outline">
                             <mat-label>Confirm your password</mat-label>
                             <input [errorStateMatcher]="confirmValidParentMatcher" matInput formControlName="confirmPassword" [type]="hideC ? 'password' : 'text'">
                             <mat-error>

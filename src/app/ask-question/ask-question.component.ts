@@ -1,30 +1,90 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { ElementRef, NgZone, ViewChild } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { Component, OnInit,NgZone, ViewChild,Input,HostBinding,ChangeDetectionStrategy  } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatChipInputEvent, MatChipList} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
-import { map, startWith, take } from 'rxjs/operators';
+import {take } from 'rxjs/operators';
+import { CustomValidators } from '../Error-Validator/custom-validators';
+import * as ClassicEditor from 'D:/Angular/Project_Vishal_Shivank/vishal-shivank-frontend-2/vishal-shivank-frontend/src/app/ckeditor5/build/ckeditor.js';
 
 @Component({
   selector: 'app-ask-question',
   templateUrl: './ask-question.component.html',
-  styleUrls: ['./ask-question.component.css']
+  styleUrls: ['./ask-question.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class AskQuestionComponent implements OnInit {
+
+  public Editor = ClassicEditor;
+
+  editorConfig = {
+    toolbar: {
+      items: [
+        'heading',
+        'bold',
+        'italic',
+        'underline',
+        'MathType',
+        'ChemType',
+        'link',
+        'bulletedList',
+        'numberedList',
+        '|',
+        'indent',
+        'outdent',
+        '|',
+        'imageUpload',
+        'blockQuote',
+        'insertTable',
+        'undo',
+        'redo',
+
+      ]
+    },
+    indentBlock: {
+      classes: [
+          'custom-block-indent-a', // First step - smallest indentation.
+          'custom-block-indent-b',
+          'custom-block-indent-c'  // Last step - biggest indentation.
+      ]
+  },
+    image: {
+      toolbar: [
+        'imageStyle:full',
+        'imageStyle:side',
+        '|',
+        'imageTextAlternative'
+      ]
+    },
+    table: {
+      contentToolbar: [
+        'tableColumn',
+        'tableRow',
+        'mergeTableCells'
+      ]
+    },
+    // This value must be kept in sync with the language defined in webpack.config.js.
+    language: 'en'
+  };  
+
+
+
+  @ViewChild('chipList') chipList: MatChipList;
+  @ViewChild('autosize') autosize:CdkTextareaAutosize;
+
+
+  questionForm:FormGroup;
+  // name chips
   visible = true;
   selectable = true;
   removable = true;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
-  // tagsControl = new FormControl();
-  filteredTags: Observable<string[]>;
-  tags: string[] = [];
-  allFruits: string[] = [];
-  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  questionForm:FormGroup;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  // data
+  data = {
+    tag_list: []
+  }
 
   constructor(
     private fb:FormBuilder,
@@ -33,59 +93,59 @@ export class AskQuestionComponent implements OnInit {
     
   }
   ngOnInit(): void {
+
     this.questionForm = this.fb.group({
-      title:[''],
-      tagsControl:['']
-    })
-    this.filteredTags = this.questionForm.controls.tagsControl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-  }
+      title:['',[
+        Validators.minLength(10)
+      ]],
+      editor:[''],
+      body:['',[
+        Validators.minLength(15)
+      ]],
+      tags: this.fb.array(this.data.tag_list, [
+        CustomValidators.validateArrayNotEmpty
+      ])
+    });
   
-  add(event: MatChipInputEvent): void {
+    this.questionForm.get('tags').statusChanges.subscribe(
+      status => this.chipList.errorState = status === 'INVALID'
+    );
+    
+  }
+
+  initName(name: string): FormControl {
+    return this.fb.control(name);
+  }
+  validateArrayNotEmpty(c: FormControl) {
+    if (c.value && c.value.length === 0) {
+      return {
+        validateArrayNotEmpty: { valid: false }
+      };
+    }
+    return null;
+  }
+  add(event: MatChipInputEvent, form: FormGroup): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add name
     if ((value || '').trim()) {
-      this.tags.push(value.trim());
+      const control = <FormArray>form.get('tags');
+      control.push(this.initName(value.trim()));
+      console.log(control);
     }
 
     // Reset the input value
     if (input) {
       input.value = '';
     }
-
-    this.questionForm.controls.tagsControl.setValue(null);
   }
-
-  remove(fruit: string): void {
-    const index = this.tags.indexOf(fruit);
-
-    if (index >= 0) {
-      this.tags.splice(index, 1);
-    }
+  remove(form, index) {
+    console.log(form);
+    form.get('tags').removeAt(index);
   }
-
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
-    this.tagInput.nativeElement.value = '';
-    this.questionForm.controls.tagsControl.setValue(null);
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  @ViewChild('autosize') autosize:CdkTextareaAutosize;
-
   triggerResize(){
     this._ngZone.onStable.pipe(take(1))
       .subscribe(()=>this.autosize.resizeToFitContent(true))
   }
-
-
-
 }

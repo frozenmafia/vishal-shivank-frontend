@@ -2,43 +2,43 @@
   <mat-card-content>
     <body class="text-center">
       <form [formGroup]="userForm" #f="ngForm">
-        <img src="assets\image\icon.jpg" alt="Logo">
-        <p>
-          <mat-form-field>
-              <input 
-              ng2TelInput
-              [ng2TelInputOptions]="{initialCountry: 'in'}" 
-              (countryChange)="onCountryChange($event)" 
-              matInput 
-              formControlName="phone">
-              <mat-error >
-                {{errors.phone}}
-              </mat-error>
-          </mat-form-field>
-  
-      </p>
-      <p>
-        <mat-form-field>
-          <mat-label>Enter your password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-          <mat-error>
-            {{errors.password}}
-          </mat-error>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </p>
-      <p>
+        <div class="card-header" >
+          <img src="assets\image\icon.jpg" alt="Logo">
+        </div>
 
-      </p>
-      <div class="input" style="padding-top:40px;">
+        <div class="container card-body">
+          <p>
+            <mat-form-field class = "container" appearance="outline">
+                <input 
+                ng2TelInput
+                [ng2TelInputOptions]="{initialCountry: 'in'}" 
+                (countryChange)="onCountryChange($event)" 
+                matInput 
+                formControlName="phone">
+                <mat-error >
+                  {{errors.phone}}
+                </mat-error>
+            </mat-form-field>
+    
+        </p>
+        <p>
+          <mat-form-field class = "container" appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-error>
+              {{errors.password}}
+            </mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+        </div>
         <span>
           <button mat-button color="primary"  style="float: inline-end;" [routerLink]="['/sign-up']">SIGN UP</button>
           <button style="float:inline-start" color="primary" (click)="login()" mat-button [disabled]="userForm.invalid">LOGIN</button>
-          
+
       </span>
-      </div>
 
       </form>
   </body>

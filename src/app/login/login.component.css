@@ -4,7 +4,10 @@
   margin: 0px 0px;
   padding: 50px;
 }
-
+.ph-card-header {
+  color: white !important;
+  background-color: navy !important;
+}
 .mat-form-field {
   width: 100%;
   min-width: 300px;

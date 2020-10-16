@@ -11,17 +11,14 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input/lib/ngx-mat-intl-tel-input.module';
 import { Ng2TelInputModule } from 'ng2-tel-input';
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { HttpClientModule } from '@angular/common/http';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +40,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     NgbModule,
     ReactiveFormsModule,
     Ng2TelInputModule,
-    MatPasswordStrengthModule.forRoot(),
-    AdminModule
+    AdminModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

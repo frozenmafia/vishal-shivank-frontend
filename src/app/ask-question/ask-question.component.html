@@ -1,7 +1,7 @@
 <div style="margin: 10px;">
   <div class="leftpane" >
     <div class="container">
-      <div class="card border-primary mb-3">
+      <div class="card border-primary mb-3" style="height:100%">
         <h2 class="card-header">Ask your Question</h2>
          <div class="card-body text-primary">
               <form [formGroup]="questionForm">
@@ -10,46 +10,43 @@
                 <mat-form-field style="width: 100%;" appearance="outline">
                   <mat-label>Title</mat-label>
                   <input matInput placeholder="Be specific and ask in simple language" formControlName="title">
+                  <mat-error>Proper title name is required</mat-error>
                 </mat-form-field>
 
 
-                <mat-form-field style="width: 100%;" appearance="outline">
+                <!-- <mat-form-field style="width: 100%;" appearance="outline">
                   <mat-label>Body</mat-label>
                   <textarea matInput
                   cdkTextareaAutosize
+                  formControlName="body"
                   #autosize="cdkTextareaAutosize"
                   placeholder="Include all the information about the question"
                   cdkAutosizeMinRows="15"
                   cdkAutosizeMaxRows="50"></textarea>
-                </mat-form-field>
+                  <mat-error>You should properly explain your doubt</mat-error>
+                </mat-form-field> -->
+
+                
+
 
                 
                 <mat-form-field class="example-chip-list" appearance="outline">
-                  <mat-label>Tags</mat-label>
-                  <mat-chip-list #chipList aria-label="Fruit selection">
-                    <mat-chip
-                      *ngFor="let tag of tags"
+                  <mat-chip-list #chipList formArrayName="tags">
+                    <mat-chip 
+                      *ngFor="let tag of questionForm.controls.tags.value; let i=index;"
                       [selectable]="selectable"
                       [removable]="removable"
-                      (removed)="remove(tag)">
+                      (removed)="remove(questionForm, i)">
                       {{tag}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-
                     </mat-chip>
-                    <input
-                      placeholder="Add upto 3 tags to describe what your question is about"
-                      #tagInput
-                      formControlName="tagsControl"
-                      [matAutocomplete]="auto"
+                    <input placeholder="Tags"
                       [matChipInputFor]="chipList"
                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      (matChipInputTokenEnd)="add($event)">
+                      [matChipInputAddOnBlur]="addOnBlur"
+                      (matChipInputTokenEnd)="add($event, questionForm)">
                   </mat-chip-list>
-                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-                      {{tag}}
-                    </mat-option>
-                  </mat-autocomplete>
+                  <mat-error>Atleast 1 name need to be added</mat-error>
                 </mat-form-field>
                 <button  mat-button [disabled]="questionForm.invalid" >Post Question</button>
               </form>
@@ -58,16 +55,16 @@
       </div>
     </div>
   <div class="rightpane">
-    <h1>Right View</h1>
-      <div class="card border-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Header</div>
-        <div class="card-body text-primary">
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+      <div class="card border-primary mb-3">
+        <h2 class="card-header remove-whitespace">Your Explanation</h2>
+        <div class="card-body text-primary p-0 my-auto">
+          <ckeditor 
+          style="width: 100%;"
+          [config]="editorConfig"
+          [editor]="Editor"
+          ></ckeditor>
       </div>
   </div> 
-</div>
 
 
 

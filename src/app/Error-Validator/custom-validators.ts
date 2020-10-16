@@ -13,6 +13,24 @@ export class CustomValidators {
         const isValid = otherControlNames.every(controlName => formGroup.get(controlName).value === formGroup.get(firstControlName).value);
         return isValid ? null : { childrenNotEqual: true };
     }
+
+    static validateArrayNotEmpty(c: FormControl) {
+        if (c.value && c.value.length === 0) {
+          return {
+            validateArrayNotEmpty: { valid: false }
+          };
+        }
+        return null;
+      }
+    
+      static validateRequired(c: FormControl) {
+        // console.log('In Validate',c);
+        if (c.value.length === 0) {
+          return {required: true};
+        } else {
+          return null;
+        }
+      }
 }
 
 /**
@@ -35,7 +53,7 @@ export const regExps: { [key: string]: RegExp } = {
  * Collection of reusable error messages
  */
 export const errorMessages: { [key: string]: string } = {
-    fullName: 'Full name must be between 1 and 128 characters',
+    fullName: 'Full name must be between 3 and 128 characters',
     email: 'Email must be a valid email address (username@domain)',
     phone:'Phone number is required',
     college_name:'College name is mandatory',
