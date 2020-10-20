@@ -5,7 +5,7 @@ import {MatChipInputEvent, MatChipList} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {take } from 'rxjs/operators';
 import { CustomValidators } from '../Error-Validator/custom-validators';
-import * as ClassicEditor from 'D:/Angular/Project_Vishal_Shivank/vishal-shivank-frontend-2/vishal-shivank-frontend/src/app/ckeditor5/build/ckeditor.js';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-ask-question',
