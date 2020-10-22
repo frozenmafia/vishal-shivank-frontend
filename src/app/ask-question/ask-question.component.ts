@@ -1,3 +1,4 @@
+//import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, OnInit,NgZone, ViewChild,Input,HostBinding,ChangeDetectionStrategy  } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -5,7 +6,9 @@ import {MatChipInputEvent, MatChipList} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {take } from 'rxjs/operators';
 import { CustomValidators } from '../Error-Validator/custom-validators';
-import * as ClassicEditor from 'D:/Angular/Project_Vishal_Shivank/vishal-shivank-frontend-2/vishal-shivank-frontend/src/app/ckeditor5/build/ckeditor.js';
+//import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import * as Editor from 'ckeditor5/build/ckeditor';
 
 @Component({
   selector: 'app-ask-question',
@@ -14,30 +17,52 @@ import * as ClassicEditor from 'D:/Angular/Project_Vishal_Shivank/vishal-shivank
   changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class AskQuestionComponent implements OnInit {
-
-  public Editor = ClassicEditor;
+  title = "ckeditor2"
+  public Editor = Editor;
+  public model ={
+  }
 
   editorConfig = {
     toolbar: {
-      items: [
-        'heading',
-        'bold',
-        'italic',
-        'underline',
-        'MathType',
-        'ChemType',
-        'link',
-        'bulletedList',
-        'numberedList',
-        '|',
-        'indent',
-        'outdent',
-        '|',
-        'imageUpload',
-        'blockQuote',
-        'insertTable',
-        'undo',
-        'redo',
+      items: ['Autoformat',
+      'Heading',
+      'Paragraph',
+      'FontSize',
+      'FontColor',
+      'Underline',
+      'Bold',
+      'Italic',
+      'BlockQuote',
+      'Highlight',
+      '|',
+      'List',
+      'Indent',
+      'HorizontalLine',
+      'undo',
+      'redo',
+      '|',
+      'MediaEmbed',
+      'Link',
+      'Mention',
+	    'CKFinder',
+	    'CKFinderUploadAdapter',
+	'Essentials',
+  'CodeBlock',
+  'MathType',
+  'ChemType',
+	'SpecialCharacters',
+	'SpecialCharactersArrows',
+	'SpecialCharactersEssentials',
+	'SpecialCharactersMathematical',
+  'SpecialCharactersText',
+  'PasteFromOffice',
+	'Table',
+	'TableToolbar',
+	'TextTransformation',
+  'WordCount',
+  
+  'math',
+  'mathematics',
 
       ]
     },
@@ -56,6 +81,13 @@ export class AskQuestionComponent implements OnInit {
         'imageTextAlternative'
       ]
     },
+    math: {
+      engine: 'mathjax', // or katex or function. E.g. (equation, element, display) => { ... }
+      lazyLoad: undefined, // async () => { ... }, called once before rendering first equation if engine doesn't exist. After resolving promise, plugin renders equations.
+      outputType: 'script', // or span
+      forceOutputType: false, // forces output to use outputType
+      enablePreview: true // Enable preview view
+  },
     table: {
       contentToolbar: [
         'tableColumn',

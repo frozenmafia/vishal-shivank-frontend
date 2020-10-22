@@ -72,3 +72,14 @@
 .custom-block-indent-c {
     margin-left: 30%;
 }
+.ui-icon-star:after {
+    background-image: url('/assets/image/imgu.png');
+}
+.background {
+    overflow-x: hidden; /* hide scroll-x*/
+    overflow-y: hidden; /* hide scroll-y*/
+    word-wrap: break-word; /* word wrap text*/
+    width:97%; /* width > 97% absolut position div will overflow and cause screen scroll*/
+    height:97%; /* height > 97% absolut position div will overflow and cause screen scroll*/
+    position: absolute; /* this way the div will act as background and it will  not interfier with the rest of the components in the html*/
+  }

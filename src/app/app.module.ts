@@ -18,7 +18,10 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { AdminModule } from './admin/admin.module';
 import { AskQuestionComponent } from './ask-question/ask-question.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import {FormsModule} from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
     NavBarComponent,
     HomeComponent,
     OtpVerificationComponent,
-    AskQuestionComponent
+    AskQuestionComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular'
     ReactiveFormsModule,
     Ng2TelInputModule,
     AdminModule,
-    CKEditorModule
+    CKEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
