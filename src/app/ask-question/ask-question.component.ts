@@ -180,4 +180,16 @@ export class AskQuestionComponent implements OnInit {
     this._ngZone.onStable.pipe(take(1))
       .subscribe(()=>this.autosize.resizeToFitContent(true))
   }
+  url="./assets/img/";
+
+  onselectFile(e){
+    if(e.target.files){
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=(event:any)=>{
+        this.url=event.target.result;
+      }
+    }
+
+  }
 }

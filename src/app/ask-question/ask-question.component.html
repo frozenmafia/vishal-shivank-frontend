@@ -58,11 +58,15 @@
       <div class="card border-primary mb-3">
         <h2 class="card-header remove-whitespace">Your Explanation</h2>
         <div class="card-body text-primary p-0 my-auto">
-          <mat-label><ckeditor 
+          <ckeditor 
           style="width: 100%;"
           [config]="editorConfig"
           [editor]="Editor"
-          ></ckeditor></mat-label>
+          ></ckeditor>
+          <div class="container text-center">
+            <!--<img [src]='url' height="200"><br>-->
+            <input type="file" (change)="onselectFile($event)">
+        </div>
       </div>
   </div> 
 
